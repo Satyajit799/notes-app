@@ -155,7 +155,7 @@ Add screenshots of your application here.
 
 ```
 assets/
-│── home.png
+│── homeScreen.png
 │── create-note.png
 │── edit-note.png
 ```
