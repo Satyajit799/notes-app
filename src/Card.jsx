@@ -14,74 +14,88 @@ const Card = ({
   toggleStar,
 }) => {
   return (
-    <div className="grid grid-cols-4 gap-8">
-      {notes.map((notes) => (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+      {notes.length === 0 && (
+        <div className="col-span-full flex min-h-[12rem] items-center justify-center rounded-2xl border border-dashed border-slate-400/70 bg-white/50 p-6 text-center text-sm text-slate-700 sm:text-base">
+          Add your first note to get started.
+        </div>
+      )}
+
+      {notes.map((note) => (
         <div
-          key={notes.id}
-          className="h-90 w-80 gap-3 bg-linear-to-b from-[#ca62da] to-[#ebe4e4] rounded-3xl grid grid-rows-[auto_1fr] p-6"
+          key={note.id}
+          className="flex h-full min-h-[22rem] w-full max-w-[22rem] flex-col rounded-[1.5rem] bg-linear-to-b from-[#ca62da] to-[#ebe4e4] p-5 shadow-lg sm:max-w-none"
         >
-          <div className="flex justify-between">
-            <div>
-              {notes.isEditing ? (
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              {note.isEditing ? (
                 <input
                   type="text"
-                  value={notes.title}
+                  value={note.title}
+                  placeholder="Title"
+                  autoFocus
                   onChange={(e) =>
                     setNotes((prev) =>
-                      prev.map((note) =>
-                        note.id === notes.id
-                          ? { ...note, title: e.target.value }
-                          : note,
+                      prev.map((item) =>
+                        item.id === note.id
+                          ? { ...item, title: e.target.value }
+                          : item,
                       ),
                     )
                   }
-                  className="bg-transparent outline-none w-60 text-2xl font-bold"
+                  className="w-full bg-transparent text-xl font-bold outline-none sm:text-2xl"
                 />
               ) : (
-                <h2 className="text-2xl font-bold">{notes.title}</h2>
+                <h2 className="break-words text-xl font-bold sm:text-2xl">
+                  {note.title}
+                </h2>
               )}
             </div>
-            {notes.isEditing ? (
-              <button onClick={() => saveNote(notes.id)}>
-                <RiCheckLine size={30} />
+            {note.isEditing ? (
+              <button onClick={() => saveNote(note.id)}>
+                <RiCheckLine size={28} />
               </button>
             ) : (
-              <button onClick={() => editNote(notes.id)}>
-                <RiPencilLine size={25} />
+              <button onClick={() => editNote(note.id)}>
+                <RiPencilLine size={24} />
               </button>
             )}
           </div>
-          <div className="text-center h-full">
-            {" "}
-            {notes.isEditing ? (
+
+          <div className="mt-4 flex-1 text-left">
+            {note.isEditing ? (
               <textarea
-                value={notes.content}
+                value={note.content}
+                placeholder="Add details..."
                 onChange={(e) =>
                   setNotes((prev) =>
-                    prev.map((note) =>
-                      note.id === notes.id
-                        ? { ...note, content: e.target.value }
-                        : note,
+                    prev.map((item) =>
+                      item.id === note.id
+                        ? { ...item, content: e.target.value }
+                        : item,
                     ),
                   )
                 }
-                className="w-full h-full bg-transparent outline-none resize-none"
+                className="h-full min-h-[10rem] w-full resize-none bg-transparent outline-none"
               />
             ) : (
-              <p>{notes.content}</p>
+              <p className="break-words text-sm leading-6 sm:text-base">
+                {note.content}
+              </p>
             )}
           </div>
-          {!notes.isEditing && (
-            <div className="flex justify-end gap-3">
-              <button onClick={() => toggleStar(notes.id)}>
-                {notes.isStarred ? (
+
+          {!note.isEditing && (
+            <div className="mt-4 flex justify-end gap-3">
+              <button onClick={() => toggleStar(note.id)}>
+                {note.isStarred ? (
                   <RiStarFill color="rgba(240,187,64,1)" />
                 ) : (
                   <RiStarLine color="rgba(240,187,64,1)" />
                 )}
               </button>
 
-              <button onClick={() => deleteNote(notes.id)}>
+              <button onClick={() => deleteNote(note.id)}>
                 <RiDeleteBinLine />
               </button>
             </div>
