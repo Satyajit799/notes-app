@@ -151,13 +151,12 @@ import "remixicon/fonts/remixicon.css";
 
 ## 📸 Screenshots
 
-Add screenshots of your application here.
 
 ```
-assets/
-│── homeScreen.png
-│── create-note.png
-│── edit-note.png
+<img width="1916" height="911" alt="image" src="https://github.com/user-attachments/assets/e8c77fd5-d973-47ba-aab3-48c4d71f8f47" />
+<img width="1916" height="911" alt="image" src="https://github.com/user-attachments/assets/87fe8181-4d4f-4906-928f-53732f95963a" />
+<img width="1917" height="916" alt="image" src="https://github.com/user-attachments/assets/3a22d5cf-cd99-4535-b842-659df629a1db" />
+
 ```
 
 ---
@@ -167,7 +166,6 @@ assets/
 **Satyajit Mohanty**
 
 * GitHub: https://github.com/Satyajit799
-* LinkedIn: *(Add your LinkedIn profile link)*
 
 ---
 
